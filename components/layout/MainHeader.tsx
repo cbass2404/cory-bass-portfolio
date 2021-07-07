@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import classes from './MainHeader.module.css';
+import classes from './MainHeader.module.scss';
 
 const MainHeader = () => {
   return (
@@ -12,8 +12,8 @@ const MainHeader = () => {
             <Image
               src="/images/header/logo.png"
               alt="Main Header Logo"
-              width={75}
-              height={75}
+              width={200}
+              height={200}
             />
           </a>
         </Link>
@@ -22,11 +22,13 @@ const MainHeader = () => {
       <div className={classes.spacer} />
 
       <nav className={classes.navigation}>
-        <Link href="/portfolio">Portfolio</Link>
+        <Link href="/portfolio">PORTFOLIO</Link>
 
-        <Link href="/blog">Blog</Link>
+        <Link href="/blog">BLOG</Link>
 
-        <Link href="/contact-me">Contact Me</Link>
+        <Link href="/contact-me">CONTACT ME</Link>
+
+        <Link href="/login">LOGIN</Link>
       </nav>
     </header>
   );

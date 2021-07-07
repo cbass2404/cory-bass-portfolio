@@ -1,7 +1,13 @@
+import { Fragment } from 'react';
+
 import AboutMe from '../components/aboutMe/AboutMe';
 
 const HomePage = () => {
-  return <AboutMe />;
+  return (
+    <Fragment>
+      <AboutMe />
+    </Fragment>
+  );
 };
 
 export default HomePage;

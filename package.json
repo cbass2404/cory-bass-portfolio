@@ -1,25 +1,40 @@
 {
-  "name": "cory-bass-portfolio",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "mongodb": "^3.6.10",
-    "next": "11.0.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
-  },
-  "devDependencies": {
-    "@types/mongodb": "^3.6.20",
-    "@types/react": "17.0.13",
-    "eslint": "7.30.0",
-    "eslint-config-next": "11.0.1",
-    "typescript": "4.3.5"
-  }
+    "name": "cory-bass-portfolio",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "test": "jest",
+        "test:watch": "jest --watch"
+    },
+    "jest": {
+        "setupFilesAfterEnv": [
+            "<rootDir>/setupTests.js"
+        ]
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "mongodb": "^3.6.10",
+        "next": "11.0.1",
+        "react": "17.0.2",
+        "react-dom": "17.0.2"
+    },
+    "devDependencies": {
+        "@babel/preset-typescript": "^7.14.5",
+        "@types/enzyme": "^3.10.9",
+        "@types/jest": "^26.0.24",
+        "@types/mongodb": "^3.6.20",
+        "@types/react": "17.0.13",
+        "@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
+        "enzyme": "^3.11.0",
+        "enzyme-to-json": "^3.6.2",
+        "eslint": "7.30.0",
+        "eslint-config-next": "11.0.1",
+        "jest": "^27.0.6",
+        "ts-jest": "^27.0.3",
+        "typescript": "4.3.5"
+    }
 }

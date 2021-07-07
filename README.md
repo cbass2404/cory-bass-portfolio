@@ -32,5 +32,9 @@ Run Commands:
     - runs the development server
 3. npm run build
     - produces a production optimized version of the app
+4. npm run test
+    - runs jest test command a single time
+5. npm run test:watch
+    - runs a jest testing node to watch for changes and test
 
 ## API Routes

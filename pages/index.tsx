@@ -1,9 +1,7 @@
+import AboutMe from '../components/aboutMe/AboutMe';
+
 const HomePage = () => {
-    return (
-        <div>
-            <h1>HomePage</h1>
-        </div>
-    );
+  return <AboutMe />;
 };
 
 export default HomePage;

@@ -58,7 +58,7 @@ describe('isValidEmail', () => {
 });
 
 describe('isValidPassword', () => {
-    // 1 Capital letter, 1 lower case letter, number, special character 8 to 20 digits long
+    // 1 Capital letter, 1 lower case letter, number, special character 6 to 15 digits long
     it('returns true if a valid password', () => {
         result = isValidPassword(validPassword);
 
@@ -79,6 +79,42 @@ describe('isValidPassword', () => {
 
     it('returns false if simple string', () => {
         result = isValidPassword(validString);
+
+        expect(result).toBeFalsy();
+    });
+
+    it('returns false if missing special character', () => {
+        result = isValidPassword('A1a1qwerty');
+
+        expect(result).toBeFalsy();
+    });
+
+    it('returns false if to short', () => {
+        result = isValidPassword('A!a1q');
+
+        expect(result).toBeFalsy();
+    });
+
+    it('returns false if to long', () => {
+        result = isValidPassword('A!a1qaaaaaaaaaaa');
+
+        expect(result).toBeFalsy();
+    });
+
+    it('returns false if no number', () => {
+        result = isValidPassword('A!aaqa');
+
+        expect(result).toBeFalsy();
+    });
+
+    it('returns false if no capital letter', () => {
+        result = isValidPassword('a!a1aqa');
+
+        expect(result).toBeFalsy();
+    });
+
+    it('returns false if no lowercase letter', () => {
+        result = isValidPassword('A!A1AAA');
 
         expect(result).toBeFalsy();
     });

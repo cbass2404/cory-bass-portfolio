@@ -3,7 +3,7 @@
 body,
 html {
   color: $white;
-  background-color: $light-gray;
+  background-color: $gray;
   font-size: 20px;
   text-align: center;
   margin: 0;
@@ -31,14 +31,18 @@ h6 {
 }
 
 .container {
-  height: calc(100vh - 80px);
-  background-color: $gray;
-  border: 2px solid $gray;
+  height: calc(100vh - 75px);
+  background-color: $dark-gray;
+  border: 2px solid $dark-gray;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   box-shadow: $dark-gray;
+  width: 75vw;
   max-width: 1200px;
-  margin: 5px auto 0 auto;
+  margin: 75px auto 0 auto;
+  -webkit-box-shadow: 23px 10px 15px -7px rgba(29, 28, 36, 0.74);
+  -moz-box-shadow: 23px 10px 15px -7px rgba(29, 28, 36, 0.74);
+  box-shadow: 23px 10px 15px -7px rgba(29, 28, 36, 0.74);
 }
 
 * {

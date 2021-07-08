@@ -1,20 +1,31 @@
+import { useEffect, useState, useCallback } from 'react';
+import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
-import Image from 'next/image';
 
+import { getPathname } from '../../lib/getPathname';
 import classes from './MainHeader.module.scss';
 
 const MainHeader = () => {
+  const router = useRouter();
+
+  const [activeLink, setActiveLink] = useState('');
+
+  const route = useCallback(() => {
+    return router.pathname.split('/')[1];
+  }, [router.pathname]);
+
+  useEffect(() => {
+    const result = route();
+
+    setActiveLink(result);
+  }, [route]);
+
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
         <Link href="/">
           <a>
-            <Image
-              src="/images/header/logo.png"
-              alt="Main Header Logo"
-              width={200}
-              height={200}
-            />
+            <h2>Cory Bass</h2>
           </a>
         </Link>
       </div>
@@ -22,13 +33,25 @@ const MainHeader = () => {
       <div className={classes.spacer} />
 
       <nav className={classes.navigation}>
-        <Link href="/portfolio">PORTFOLIO</Link>
+        <div
+          className={activeLink === 'portfolio' ? classes.active : classes.link}
+        >
+          <Link href="/portfolio">PORTFOLIO</Link>
+        </div>
 
-        <Link href="/blog">BLOG</Link>
-
-        <Link href="/contact-me">CONTACT ME</Link>
-
-        <Link href="/login">LOGIN</Link>
+        <div className={activeLink === 'blog' ? classes.active : classes.link}>
+          <Link href="/blog">BLOG</Link>
+        </div>
+        <div
+          className={
+            activeLink === 'contact-me' ? classes.active : classes.link
+          }
+        >
+          <Link href="/contact-me">CONTACT ME</Link>
+        </div>
+        <div className={activeLink === 'auth' ? classes.active : classes.link}>
+          <Link href="/auth">LOGIN</Link>
+        </div>
       </nav>
     </header>
   );

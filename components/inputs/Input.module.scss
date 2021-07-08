@@ -1,0 +1,29 @@
+@import '../../styles/theme.scss';
+
+.wrapper {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  padding: 15px 5px 0 5px;
+  display: flex;
+
+  svg {
+    margin-left: auto;
+  }
+
+  .input {
+    color: $white;
+    background-color: transparent;
+    font-size: 1.25rem;
+    width: 65%;
+    margin-left: auto;
+    border: none;
+    -webkit-box-shadow: inset 0px 7px 19px 6px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: inset 0px 7px 19px 6px rgba(0, 0, 0, 0.8);
+    box-shadow: inset 0px 7px 19px 6px rgba(0, 0, 0, 0.8);
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

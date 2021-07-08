@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import Input from '../inputs/Input';
+import classes from './AuthForm.module.scss';
 
 const AuthForm = (props: any) => {
   const [username, setUsername] = useState('');
@@ -7,10 +9,15 @@ const AuthForm = (props: any) => {
   const [password, setPassword] = useState('');
 
   const inputs = [
-    { label: 'Username', type: 'text', value: username, setValue: setUsername },
-    { label: 'Email', type: 'email', value: email, setValue: setEmail },
     {
-      label: 'Password',
+      label: 'Username:',
+      type: 'text',
+      value: username,
+      setValue: setUsername,
+    },
+    { label: 'Email:', type: 'email', value: email, setValue: setEmail },
+    {
+      label: 'Password:',
       type: 'password',
       value: password,
       setValue: setPassword,
@@ -20,17 +27,17 @@ const AuthForm = (props: any) => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
 
-    const user = {
+    const userData = {
       username,
       email,
       password,
     };
 
-    console.log(user, props.formType);
+    props.onFormSubmission(userData);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={classes.wrapper} onSubmit={handleSubmit}>
       {inputs.map(({ label, type, value, setValue }) => (
         <Input
           key={label}

@@ -16,6 +16,8 @@ html {
 div,
 ::before,
 ::after {
+  height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
@@ -28,6 +30,15 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  color: $dark-gray;
+  position: fixed;
+  left: -10px;
+  bottom: 250px;
+  font-size: 5rem;
+  rotate: -90deg;
 }
 
 .container {
@@ -52,4 +63,8 @@ h6 {
 a {
   color: $white;
   text-decoration: none;
+}
+
+button {
+  cursor: pointer;
 }

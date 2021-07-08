@@ -1,9 +1,7 @@
-const AuthPage = () => {
-  return (
-    <div>
-      <h2>AuthPage</h2>
-    </div>
-  );
+import AuthForms from '../components/auth/AuthForms';
+
+const AuthPage = (props: any) => {
+  return <AuthForms />;
 };
 
 export default AuthPage;

@@ -1,27 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import classes from './AuthForms.module.scss';
 
-const AuthForms = () => {
+const AuthForms = (props: any) => {
   const [signupForm, setSignupForm] = useState<boolean>(false);
+
+  const { setSignup } = props;
+
+  useEffect(() => {
+    setSignup(signupForm);
+  }, [signupForm, setSignup]);
 
   const authImage = (
     <Image
       id="authImage"
       src="/images/auth/auth.png"
       alt="Login Security Icon"
-      width={500}
-      height={500}
+      width={400}
+      height={400}
     />
   );
 
   if (signupForm) {
     return (
       <section className={classes.wrapper}>
-        <h1>{`< sign up />`}</h1>
         <div className={`${classes.content} ${classes.imageWrapper}`}>
           {authImage}
         </div>
@@ -34,7 +39,6 @@ const AuthForms = () => {
 
   return (
     <section className={classes.wrapper}>
-      <h1>{`< login />`}</h1>
       <div className={`${classes.content} ${classes.imageWrapper}`}>
         {authImage}
       </div>

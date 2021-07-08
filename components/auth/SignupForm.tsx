@@ -1,3 +1,5 @@
+import { connect } from 'react-redux';
+
 import AuthForm from './AuthForm';
 import classes from './SignupForm.module.scss';
 
@@ -12,8 +14,18 @@ const SignupForm = (props: any) => {
     props.setSignupForm(!props.signupForm);
   };
 
-  const handleSubmit = (userData: UserData) => {
-    console.log(userData);
+  const handleSubmit = async (userData: UserData) => {
+    const response = await fetch('/api/auth/signup', {
+      method: 'POST',
+      body: JSON.stringify(userData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = await response.json();
+
+    console.log(data);
   };
 
   return (
@@ -24,4 +36,8 @@ const SignupForm = (props: any) => {
   );
 };
 
-export default SignupForm;
+// const mapStateToProps = state => {
+
+// }
+
+export default connect()(SignupForm);

@@ -1,9 +1,9 @@
 const BlogDetailPage = () => {
-    return (
-        <div>
-            <h1>BlogDetailPage</h1>
-        </div>
-    );
+  return (
+    <div>
+      <h1>{`< title />`}</h1>
+    </div>
+  );
 };
 
 export default BlogDetailPage;

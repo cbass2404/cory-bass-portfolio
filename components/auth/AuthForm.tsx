@@ -8,30 +8,50 @@ const AuthForm = (props: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const inputs = [
-    {
-      label: 'Username:',
-      type: 'text',
-      value: username,
-      setValue: setUsername,
-    },
-    { label: 'Email:', type: 'email', value: email, setValue: setEmail },
-    {
-      label: 'Password:',
-      type: 'password',
-      value: password,
-      setValue: setPassword,
-    },
-  ];
+  const inputs =
+    props.formType === 'login'
+      ? [
+          { label: 'Email:', type: 'email', value: email, setValue: setEmail },
+          {
+            label: 'Password:',
+            type: 'password',
+            value: password,
+            setValue: setPassword,
+          },
+        ]
+      : [
+          {
+            label: 'Username:',
+            type: 'text',
+            value: username,
+            setValue: setUsername,
+          },
+          { label: 'Email:', type: 'email', value: email, setValue: setEmail },
+          {
+            label: 'Password:',
+            type: 'password',
+            value: password,
+            setValue: setPassword,
+          },
+        ];
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
 
-    const userData = {
-      username,
-      email,
-      password,
-    };
+    let userData;
+
+    if (props.formType === 'login') {
+      userData = {
+        email,
+        password,
+      };
+    } else {
+      userData = {
+        username,
+        email,
+        password,
+      };
+    }
 
     props.onFormSubmission(userData);
   };
@@ -47,7 +67,7 @@ const AuthForm = (props: any) => {
           setValue={setValue}
         />
       ))}
-
+      {props.error && <p>{props.error}</p>}
       <button>Submit Form</button>
     </form>
   );

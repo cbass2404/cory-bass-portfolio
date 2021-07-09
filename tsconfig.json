@@ -14,6 +14,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/__tests__/validateInput.test.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/__tests__/validateInput.test.js", "pages/api/auth/[...nextauth].ts"],
   "exclude": ["node_modules"]
 }

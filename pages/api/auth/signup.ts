@@ -1,6 +1,6 @@
 import { signIn } from 'next-auth/client';
 
-import { connectToDatabase } from '../../../lib/db';
+import { connectToUserDatabase } from '../../../lib/db';
 import { hashPassword } from '../../../lib/auth';
 
 interface UserData {
@@ -39,7 +39,7 @@ const handler = async (req: any, res: any) => {
 
   let client;
   try {
-    client = await connectToDatabase(process.env.USERS);
+    client = await connectToUserDatabase();
   } catch (error) {
     res
       .status(500)
@@ -47,9 +47,41 @@ const handler = async (req: any, res: any) => {
     return;
   }
 
+  const collection = client.db().collection('users');
+
+  let usernameTaken;
+  try {
+    usernameTaken = await collection.findOne({ username });
+  } catch (error) {
+    res.status(500).json({ message: 'Could not query database' });
+    client.close();
+    return;
+  }
+
+  if (usernameTaken) {
+    res.status(422).json({ message: 'Username taken' });
+    client.close();
+    return;
+  }
+
+  let emailTaken;
+  try {
+    emailTaken = await collection.findOne({ email });
+  } catch (error) {
+    res.status(500).json({ message: 'Could not query database' });
+    client.close();
+    return;
+  }
+
+  if (emailTaken) {
+    res.status(422).json({ message: 'Email taken' });
+    client.close();
+    return;
+  }
+
   let response;
   try {
-    response = await client.db().collection('users').insertOne(userData);
+    response = await collection.insertOne(userData);
   } catch (error) {
     res.status(500).json({ message: 'Could not save profile...', error });
     client.close();
@@ -66,7 +98,7 @@ const handler = async (req: any, res: any) => {
     _id: response.insertedId,
   };
 
-  res.status(200).json({ message: 'Success!', newUser });
+  res.status(200).json({ message: 'Success!', data: newUser });
 };
 
 export default handler;

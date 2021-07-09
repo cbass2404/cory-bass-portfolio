@@ -1,12 +1,14 @@
 import { useEffect, useState, useCallback } from 'react';
-import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
+import { useRouter } from 'next/dist/client/router';
+import { useSession, signOut } from 'next-auth/client';
 
-import { getPathname } from '../../lib/getPathname';
 import classes from './MainHeader.module.scss';
 
 const MainHeader = () => {
   const router = useRouter();
+
+  const [session, loading] = useSession();
 
   const [activeLink, setActiveLink] = useState('');
 
@@ -19,6 +21,10 @@ const MainHeader = () => {
 
     setActiveLink(result);
   }, [route]);
+
+  const handleLogout = () => {
+    signOut();
+  };
 
   return (
     <header className={classes.header}>
@@ -49,9 +55,17 @@ const MainHeader = () => {
         >
           <Link href="/contact-me">CONTACT ME</Link>
         </div>
-        <div className={activeLink === 'auth' ? classes.active : classes.link}>
-          <Link href="/auth">LOGIN</Link>
-        </div>
+        {session ? (
+          <div className={classes.link}>
+            <button onClick={handleLogout}>LOGOUT</button>
+          </div>
+        ) : (
+          <div
+            className={activeLink === 'auth' ? classes.active : classes.link}
+          >
+            <Link href="/auth">LOGIN</Link>
+          </div>
+        )}
       </nav>
     </header>
   );

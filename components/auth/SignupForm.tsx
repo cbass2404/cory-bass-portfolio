@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { connect } from 'react-redux';
 
 import AuthForm from './AuthForm';
@@ -10,6 +11,8 @@ interface UserData {
 }
 
 const SignupForm = (props: any) => {
+  const [error, setError] = useState<string | null>(null);
+
   const onToggle = () => {
     props.setSignupForm(!props.signupForm);
   };
@@ -25,12 +28,23 @@ const SignupForm = (props: any) => {
 
     const data = await response.json();
 
-    console.log(data);
+    console.log(data.message);
+
+    if (!response.ok) {
+      setError(data.message);
+      return;
+    }
+
+    onToggle();
   };
 
   return (
     <div className={classes.wrapper}>
-      <AuthForm formType={'signup'} onFormSubmission={handleSubmit} />
+      <AuthForm
+        formType={'signup'}
+        onFormSubmission={handleSubmit}
+        error={error}
+      />
       <button onClick={onToggle}>Already signed up?</button>
     </div>
   );

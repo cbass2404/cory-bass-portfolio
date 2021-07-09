@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
+import { signIn } from 'next-auth/client';
+import { useRouter } from 'next/dist/client/router';
 
 import AuthForm from './AuthForm';
 import classes from './SignupForm.module.scss';
@@ -11,6 +13,7 @@ interface UserData {
 }
 
 const SignupForm = (props: any) => {
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
   const onToggle = () => {
@@ -35,7 +38,18 @@ const SignupForm = (props: any) => {
       return;
     }
 
-    onToggle();
+    const result = await signIn('credentials', {
+      redirect: false,
+      email: userData.email,
+      password: userData.password,
+    });
+
+    if (result && result.error) {
+      setError(result.error);
+      return;
+    }
+
+    router.push('/');
   };
 
   return (

@@ -8,6 +8,7 @@ interface UserData {
   email: string;
   password: string;
   image: string;
+  admin: boolean;
 }
 
 interface NewUser {
@@ -16,6 +17,7 @@ interface NewUser {
   email: string;
   image: string;
   _id: string;
+  admin: boolean;
 }
 
 const handler = async (req: any, res: any) => {
@@ -35,6 +37,7 @@ const handler = async (req: any, res: any) => {
     email,
     password: hashedPassword,
     image: '/images/user/no-img.png',
+    admin: false,
   };
 
   let client;
@@ -96,6 +99,7 @@ const handler = async (req: any, res: any) => {
     email: userData.email,
     image: userData.image,
     _id: response.insertedId,
+    admin: false,
   };
 
   res.status(200).json({ message: 'Success!', data: newUser });

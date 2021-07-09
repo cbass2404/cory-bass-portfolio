@@ -12,11 +12,11 @@ interface UserData {
 }
 
 interface NewUser {
-  username: string;
-  password: string;
-  email: string;
-  image: string;
   _id: string;
+  username: string;
+  email: string;
+  password: string;
+  image: string;
   admin: boolean;
 }
 

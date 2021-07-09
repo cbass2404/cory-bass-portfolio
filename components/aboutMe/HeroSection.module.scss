@@ -1,0 +1,36 @@
+@import '../../styles/theme.scss';
+
+.wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-evenly;
+
+  .content {
+    text-align: left;
+    width: 50%;
+    height: auto;
+    margin: 15px 20px;
+  }
+  .skills {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+
+    .list {
+      width: 100%;
+    }
+  }
+
+  .image {
+    border-radius: 100%;
+    -webkit-box-shadow: 10px 10px 17px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 17px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 17px 0px rgba(0, 0, 0, 0.75);
+    img {
+      border-radius: 100%;
+      height: auto;
+      width: auto;
+    }
+  }
+}

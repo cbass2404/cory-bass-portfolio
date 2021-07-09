@@ -2,7 +2,12 @@
 
 .wrapper {
   padding: 0 25px 25px 25px;
+
   .content {
     text-align: left;
+  }
+
+  a {
+    color: $teal;
   }
 }

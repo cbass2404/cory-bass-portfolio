@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react';
 
 import AuthForms from '../components/auth/AuthForms';
 
-const AuthPage = (props: any) => {
+const AuthPage = () => {
   const [signup, setSignup] = useState<boolean>(false);
   return (
     <Fragment>
@@ -10,6 +10,12 @@ const AuthPage = (props: any) => {
       <AuthForms setSignup={setSignup} />
     </Fragment>
   );
+};
+
+export const getStaticProps = () => {
+  return {
+    props: {},
+  };
 };
 
 export default AuthPage;

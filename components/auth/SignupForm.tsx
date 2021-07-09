@@ -31,8 +31,6 @@ const SignupForm = (props: any) => {
 
     const data = await response.json();
 
-    console.log(data.message);
-
     if (!response.ok) {
       setError(data.message);
       return;

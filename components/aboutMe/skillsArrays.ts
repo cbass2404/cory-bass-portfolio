@@ -21,4 +21,5 @@ export const softSkills: string[] = [
   'Focus',
   'Adaptable',
   'Loves a good challenge',
+  'Good communication skills',
 ];

@@ -1,5 +1,3 @@
-import { signIn } from 'next-auth/client';
-
 import { connectToUserDatabase } from '../../../lib/db';
 import { hashPassword } from '../../../lib/auth';
 
@@ -15,7 +13,6 @@ interface NewUser {
   _id: string;
   username: string;
   email: string;
-  password: string;
   image: string;
   admin: boolean;
 }
@@ -33,7 +30,7 @@ const handler = async (req: any, res: any) => {
   const hashedPassword = await hashPassword(password);
 
   const userData: UserData = {
-    username,
+    username: `@${username.toLowerCase()}`,
     email,
     password: hashedPassword,
     image: '/images/user/no-img.png',
@@ -95,7 +92,6 @@ const handler = async (req: any, res: any) => {
 
   const newUser: NewUser = {
     username: userData.username,
-    password: hashedPassword,
     email: userData.email,
     image: userData.image,
     _id: response.insertedId,

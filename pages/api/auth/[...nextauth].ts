@@ -45,14 +45,7 @@ export default NextAuth({
           throw new Error('Invalid email or password');
         }
 
-        const userData = {
-          _id: user._id.toString(),
-          email: user.email,
-          username: user.username,
-          image: user.image,
-        };
-
-        return userData;
+        return { email: user.email, admin: user.admin };
       },
     }),
   ],

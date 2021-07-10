@@ -3,14 +3,27 @@ import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 import { useSession, signOut } from 'next-auth/client';
 
+//redux
+import { connect } from 'react-redux';
+import { setUser } from '../../redux/actions/userActions';
+
 import classes from './MainHeader.module.scss';
 
-const MainHeader = () => {
+interface User {
+  _id: string;
+  username: string;
+  email: string;
+  image: string;
+  admin: boolean;
+}
+
+const MainHeader = (props: any) => {
   const router = useRouter();
 
   const [session, loading] = useSession();
 
   const [activeLink, setActiveLink] = useState('');
+  const [user, setUser] = useState<User | null>(null);
 
   const route = useCallback(() => {
     return router.pathname.split('/')[1];
@@ -24,6 +37,43 @@ const MainHeader = () => {
 
   const handleLogout = () => {
     signOut();
+    props.setUser(null);
+  };
+
+  const userLinks = () => {
+    if (loading) {
+      return (
+        <div className={classes.spacer}>
+          <p>Loading...</p>
+        </div>
+      );
+    } else if (session) {
+      return (
+        <div className={classes.spacer}>
+          <p>{props.user.username}</p>
+        </div>
+      );
+    } else {
+      return <div className={classes.spacer} />;
+    }
+  };
+
+  const showUser = () => {
+    if (loading) {
+      return (
+        <div className={classes.spacer}>
+          <p>Loading...</p>
+        </div>
+      );
+    } else if (session && props.user.user) {
+      return (
+        <div className={classes.spacer}>
+          <p>{props.user.user.username}</p>
+        </div>
+      );
+    } else {
+      return <div className={classes.spacer} />;
+    }
   };
 
   return (
@@ -36,7 +86,7 @@ const MainHeader = () => {
         </Link>
       </div>
 
-      <div className={classes.spacer} />
+      {showUser()}
 
       <nav className={classes.navigation}>
         <div
@@ -71,4 +121,8 @@ const MainHeader = () => {
   );
 };
 
-export default MainHeader;
+const mapStateToProps = (state: any) => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps, { setUser })(MainHeader);

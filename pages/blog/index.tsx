@@ -1,8 +1,10 @@
+import { Fragment } from 'react';
+
 const BlogPage = () => {
   return (
-    <div>
+    <Fragment>
       <h1>{`< blog />`}</h1>
-    </div>
+    </Fragment>
   );
 };
 

@@ -1,8 +1,10 @@
+import { Fragment } from 'react';
+
 const PortfolioPage = () => {
   return (
-    <div>
+    <Fragment>
       <h1>{`< portfolio />`}</h1>
-    </div>
+    </Fragment>
   );
 };
 

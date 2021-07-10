@@ -11,6 +11,22 @@ const FormInput = (props: any) => {
 
   const { label, type, value, setValue } = props;
 
+  if (props.type === 'textarea') {
+    return (
+      <div className={classes.wrapper}>
+        <label htmlFor={label}>{label}</label>
+        <textarea
+          id={label}
+          className={classes.input}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          rows={4}
+          maxLength={200}
+        />
+      </div>
+    );
+  }
+
   if (props.type === 'password') {
     return (
       <div className={classes.wrapper}>

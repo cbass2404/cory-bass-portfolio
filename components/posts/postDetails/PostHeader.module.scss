@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  .header {
+    // width: ;
+    h1 {
+      text-align: right;
+      // width: 180%;
+    }
+  }
+
+  .image {
+    width: auto;
+    img {
+      object-fit: contain;
+      width: 200px;
+    }
+  }
+}

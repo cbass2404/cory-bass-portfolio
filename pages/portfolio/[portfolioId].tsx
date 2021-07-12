@@ -1,7 +1,9 @@
+import HighlightedH1 from '../../lib/HighlightedH1';
+
 const PortfolioDetailPage = () => {
   return (
     <div>
-      <h1>{`< project />`}</h1>
+      <HighlightedH1 content={'portfolio title'} />
     </div>
   );
 };

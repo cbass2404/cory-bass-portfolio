@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import Link from 'next/dist/client/link';
 import PostItem from './PostItem';
 
 const PostList = (props: any) => {
@@ -10,7 +10,11 @@ const PostList = (props: any) => {
         posts.map((post: any) => {
           return (
             <div key={post.slug}>
-              <PostItem post={post} />
+              <Link href={`/posts/${post.slug}`}>
+                <a>
+                  <PostItem post={post} />
+                </a>
+              </Link>
             </div>
           );
         })}

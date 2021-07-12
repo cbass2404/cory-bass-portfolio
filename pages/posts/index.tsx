@@ -1,12 +1,13 @@
 import { Fragment } from 'react';
 
 import AllPosts from '../../components/posts/AllPosts';
+import HighlightedH1 from '../../lib/HighlightedH1';
 import { getAllPosts } from '../../lib/posts';
 
 const BlogPage = (props: any) => {
   return (
     <Fragment>
-      <h1>{`< blog />`}</h1>
+      <HighlightedH1 content="blog" />
       <AllPosts posts={props.posts} />
     </Fragment>
   );

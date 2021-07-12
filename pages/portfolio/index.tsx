@@ -1,9 +1,10 @@
 import { Fragment } from 'react';
+import HighlightedH1 from '../../lib/HighlightedH1';
 
 const PortfolioPage = () => {
   return (
     <Fragment>
-      <h1>{`< portfolio />`}</h1>
+      <HighlightedH1 content="portfolio" />
     </Fragment>
   );
 };

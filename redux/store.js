@@ -4,8 +4,8 @@ import reducers from './reducers';
 
 const enhancers = compose(
   applyMiddleware(reduxThunk),
-  typeof window !== 'undefined' && window.devToolsExtension
-    ? window.devToolsExtension()
+  typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__
+    ? window.__REDUX_DEVTOOLS_EXTENSION__()
     : (f) => f
 );
 

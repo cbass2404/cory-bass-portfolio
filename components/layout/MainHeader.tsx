@@ -40,24 +40,6 @@ const MainHeader = (props: any) => {
     props.setUser(null);
   };
 
-  const userLinks = () => {
-    if (loading) {
-      return (
-        <div className={classes.spacer}>
-          <p>Loading...</p>
-        </div>
-      );
-    } else if (session) {
-      return (
-        <div className={classes.spacer}>
-          <p>{props.user.username}</p>
-        </div>
-      );
-    } else {
-      return <div className={classes.spacer} />;
-    }
-  };
-
   const showUser = () => {
     if (loading) {
       return (
@@ -72,7 +54,7 @@ const MainHeader = (props: any) => {
         </div>
       );
     } else {
-      return <div className={classes.spacer} />;
+      return <div className={classes.spacer}>@guest</div>;
     }
   };
 

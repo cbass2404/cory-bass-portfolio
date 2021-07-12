@@ -5,6 +5,12 @@ import classes from './PostItem.module.scss';
 const PostItem = (props: any) => {
   const { slug, title, date, excerpt, image } = props.post;
 
+  const formattedDate = new Date(date).toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
   return (
     <div className={classes.wrapper}>
       <div className={classes.content}>
@@ -16,9 +22,15 @@ const PostItem = (props: any) => {
         />
       </div>
       <div className={classes.content}>
-        <div>{title}</div>
-        <div>{date}</div>
-        <div>{excerpt}</div>
+        <div>
+          <h2>{title}</h2>
+        </div>
+        <div>
+          <p>{excerpt}</p>
+        </div>
+        <div>
+          <time>{formattedDate}</time>
+        </div>
       </div>
     </div>
   );

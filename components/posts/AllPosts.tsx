@@ -1,18 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import Input from '../inputs/Input';
 import classes from './AllPosts.module.scss';
 import PostList from './PostList';
 
 const AllPosts = (props: any) => {
+  const { posts } = props;
   const [search, setSearch] = useState('');
 
-  let result;
-  const handleSearch = () => {
-    result = props.posts;
+  const handleSearch = useCallback(() => {
+    const formattedSearch = search.replace(/[ ]/g, '').toLowerCase();
+    const results = posts;
 
-    return result;
-  };
+    if (!!search.length) {
+      const filteredResults = results.filter((result: any) => {
+        const formattedExcerpt = result.excerpt
+          .replace(/[ ]/g, '')
+          .toLowerCase();
+
+        return formattedExcerpt.includes(formattedSearch);
+      });
+
+      return filteredResults;
+    }
+    return results;
+  }, [search, posts]);
 
   return (
     <div className={classes.wrapper}>

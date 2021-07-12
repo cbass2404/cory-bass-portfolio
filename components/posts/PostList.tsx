@@ -1,20 +1,13 @@
+import { useEffect, useMemo } from 'react';
 import PostItem from './PostItem';
 
 const PostList = (props: any) => {
-  const postsList = [...props.posts];
-
-  
-  if(!!props.searchParams.length){
-    postsList.filter(postsList => {
-      const searchTerm = props.searchParams.replace(' ', '').toLowerCase()
-      postsList=
-    })
-  }
+  const { posts } = props;
 
   return (
     <div>
       {props.posts &&
-        postsList.map((post: any) => {
+        posts.map((post: any) => {
           return (
             <div key={post.slug}>
               <PostItem post={post} />

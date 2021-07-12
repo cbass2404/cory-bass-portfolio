@@ -96,7 +96,7 @@ const MainHeader = (props: any) => {
         </div>
 
         <div className={activeLink === 'blog' ? classes.active : classes.link}>
-          <Link href="/blog">BLOG</Link>
+          <Link href="/posts">BLOG</Link>
         </div>
         <div
           className={

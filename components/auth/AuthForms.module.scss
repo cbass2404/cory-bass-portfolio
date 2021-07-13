@@ -24,3 +24,14 @@
     box-shadow: 10px 10px 17px 0px rgba(0, 0, 0, 0.75);
   }
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    // height: 100vh;
+    flex-direction: column;
+
+    .content {
+      width: 100%;
+    }
+  }
+}

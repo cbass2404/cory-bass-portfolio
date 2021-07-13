@@ -27,3 +27,16 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // width: 100vw;
+
+    .content {
+      width: 90vw;
+    }
+  }
+}

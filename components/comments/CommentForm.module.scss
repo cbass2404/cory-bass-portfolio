@@ -1,0 +1,17 @@
+@import '../../styles/theme.scss';
+
+.link {
+  width: max-content;
+  height: 100%;
+  padding: 5px;
+  margin: 5px 0 20px 0;
+  background-color: $teal;
+  border-radius: 5px;
+  transition: 0.1s ease-in-out;
+
+  &:active {
+    -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+  }
+}

@@ -3,19 +3,15 @@ import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 import { useSession, signOut } from 'next-auth/client';
 
-//redux
-import { connect } from 'react-redux';
-import { setUser } from '../../redux/actions/userActions';
+// fontawesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faEnvelopeOpen,
+  faEnvelope,
+  faEdit,
+} from '@fortawesome/free-solid-svg-icons';
 
 import classes from './MainHeader.module.scss';
-
-interface User {
-  _id: string;
-  username: string;
-  email: string;
-  image: string;
-  admin: boolean;
-}
 
 const MainHeader = (props: any) => {
   const router = useRouter();
@@ -23,7 +19,6 @@ const MainHeader = (props: any) => {
   const [session, loading] = useSession();
 
   const [activeLink, setActiveLink] = useState('');
-  const [user, setUser] = useState<User | null>(null);
 
   const route = useCallback(() => {
     return router.pathname.split('/')[1];
@@ -37,26 +32,37 @@ const MainHeader = (props: any) => {
 
   const handleLogout = () => {
     signOut();
-    props.setUser(null);
   };
 
-  const showUser = () => {
+  const showUser = useCallback(() => {
     if (loading) {
       return (
         <div className={classes.spacer}>
           <p>Loading...</p>
         </div>
       );
-    } else if (session && props.user.user) {
+    } else if (session && session.user && session.user.name === '@cbass') {
       return (
         <div className={classes.spacer}>
-          <p>{props.user.user.username}</p>
+          <FontAwesomeIcon icon={faEnvelope} />
+          <p className={classes.name}>{session.user.name}</p>
+          <FontAwesomeIcon icon={faEdit} />
+        </div>
+      );
+    } else if (session && session.user) {
+      return (
+        <div className={classes.spacer}>
+          <p className={classes.name}>{session.user.name}</p>
         </div>
       );
     } else {
-      return <div className={classes.spacer}>@guest</div>;
+      return (
+        <div className={classes.spacer}>
+          <p className={classes.name}>@guest</p>
+        </div>
+      );
     }
-  };
+  }, [session, loading]);
 
   return (
     <header className={classes.header}>
@@ -103,8 +109,4 @@ const MainHeader = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  user: state.user,
-});
-
-export default connect(mapStateToProps, { setUser })(MainHeader);
+export default MainHeader;

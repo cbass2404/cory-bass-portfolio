@@ -2,10 +2,6 @@ import { useState } from 'react';
 import { signIn } from 'next-auth/client';
 import { useRouter } from 'next/dist/client/router';
 
-// redux
-import { connect } from 'react-redux';
-import { setUser } from '../../redux/actions/userActions';
-
 import AuthForm from './AuthForm';
 import classes from './LoginForm.module.scss';
 
@@ -44,8 +40,6 @@ const LoginForm = (props: any) => {
       return;
     }
 
-    props.setUser(data.data);
-
     router.push('/');
   };
 
@@ -61,4 +55,4 @@ const LoginForm = (props: any) => {
   );
 };
 
-export default connect(null, { setUser })(LoginForm);
+export default LoginForm;

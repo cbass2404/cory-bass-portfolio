@@ -23,14 +23,31 @@
   }
 
   .image {
-    border-radius: 100%;
     -webkit-box-shadow: 10px 10px 17px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 17px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 17px 0px rgba(0, 0, 0, 0.75);
     img {
-      border-radius: 100%;
       height: auto;
       width: auto;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .skills {
+    justify-content: space-evenly;
+
+    .list {
+      margin: 0 20px;
+    }
+  }
+
+  .content {
+    display: flex;
   }
 }

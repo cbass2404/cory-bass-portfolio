@@ -1,7 +1,6 @@
 @import '../../styles/theme.scss';
 
 .wrapper {
-  // background-color: $gray;
   width: 65%;
   text-align: left;
   margin: 15px 20%;
@@ -18,5 +17,12 @@
       color: $teal;
       margin: auto 25px;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+    margin: 0;
   }
 }

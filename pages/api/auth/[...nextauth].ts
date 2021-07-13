@@ -45,7 +45,11 @@ export default NextAuth({
           throw new Error('Invalid email or password');
         }
 
-        return { email: user.email, admin: user.admin };
+        return {
+          email: user.email,
+          name: user.username,
+          image: user.image,
+        };
       },
     }),
   ],

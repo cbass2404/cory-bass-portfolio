@@ -1,9 +1,6 @@
 @import '../../styles/theme.scss';
 
 .wrapper {
-  text-align: center;
-  height: 100%;
-  width: 100%;
   padding: 15px 5px 0 5px;
   display: flex;
 
@@ -27,6 +24,19 @@
 
     &:focus {
       outline: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .input {
+      margin-left: 15px;
+      width: 50vw;
     }
   }
 }

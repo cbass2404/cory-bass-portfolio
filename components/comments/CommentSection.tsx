@@ -51,10 +51,15 @@ const CommentSection = (props: any) => {
             handleSubmit={onSubmit}
             comment={comment}
             setComment={setComment}
+            label="New Comment:"
           />
         </div>
         <div className={classes.content}>
-          <CommentList comments={comments} />
+          <CommentList
+            comments={comments}
+            setComments={setComments}
+            user={session.user.name}
+          />
         </div>
       </div>
     );

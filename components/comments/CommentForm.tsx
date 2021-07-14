@@ -4,7 +4,7 @@ import Input from '../inputs/Input';
 import classes from './CommentForm.module.scss';
 
 const CommentForm = (props: any) => {
-  const { handleSubmit, comment, setComment } = props;
+  const { label, handleSubmit, comment, setComment } = props;
 
   const onSubmit = (event: any) => {
     event.preventDefault();
@@ -16,7 +16,7 @@ const CommentForm = (props: any) => {
     <form onSubmit={onSubmit}>
       <Input
         type="textarea"
-        label="Comment:"
+        label={label}
         value={comment}
         setValue={setComment}
       />

@@ -28,6 +28,7 @@ export const getPostComments = async (slug: string) => {
     comment: comment.comment,
     viewed: comment.viewed,
     date: comment.date.toString(),
+    edited: comment.edited?.toString() || null,
   }));
 
   return formattedData;

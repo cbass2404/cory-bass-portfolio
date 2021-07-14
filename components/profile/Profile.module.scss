@@ -1,0 +1,71 @@
+@import '../../styles/theme.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .input {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      svg {
+        margin: 4px 5px 0 20px;
+      }
+
+      input {
+        width: fit-content;
+      }
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  }
+  button {
+    color: $white;
+    background-color: $teal;
+    margin-top: 15px;
+    width: 30%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+
+    &:active {
+      -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .delete {
+    color: red;
+    background-color: $gray;
+    width: 50%;
+    margin-top: 40px;
+    padding: 20px;
+    -webkit-box-shadow: inset 0px 7px 19px 6px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: inset 0px 7px 19px 6px rgba(0, 0, 0, 0.8);
+    box-shadow: inset 0px 7px 19px 6px rgba(0, 0, 0, 0.8);
+
+    p {
+      color: $white;
+    }
+
+    button {
+      background-color: red;
+    }
+  }
+}

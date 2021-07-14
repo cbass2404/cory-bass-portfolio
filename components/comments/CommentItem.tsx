@@ -7,7 +7,7 @@ import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 import CommentForm from './CommentForm';
 import classes from './CommentItem.module.scss';
-import ConfirmModul from './ConfirmModul';
+import ConfirmModul from '../inputs/ConfirmModul';
 
 const CommentItem = (props: any) => {
   const { date, _id, comment, _user, image } = props.comment;
@@ -98,8 +98,9 @@ const CommentItem = (props: any) => {
             <ConfirmModul
               setOpenModul={setOpenModul}
               openModul={openModul}
+              item="comment"
               comment={comment}
-              deleteComment={deleteComment}
+              deleteFn={deleteComment}
             />
           )}
         </div>

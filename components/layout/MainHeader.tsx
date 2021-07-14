@@ -44,15 +44,35 @@ const MainHeader = (props: any) => {
     } else if (session && session.user && session.user.name === '@cbass') {
       return (
         <div className={classes.spacer}>
-          <FontAwesomeIcon icon={faEnvelope} />
-          <p className={classes.name}>{session.user.name}</p>
-          <FontAwesomeIcon icon={faEdit} />
+          <div className={classes.toolbar}>
+            <Link href="">
+              <a>
+                <FontAwesomeIcon icon={faEnvelope} />
+              </a>
+            </Link>
+          </div>
+          <div className={classes.toolbar}>
+            <Link href={`/${session.user.name}`}>
+              <a>{session.user.name}</a>
+            </Link>
+          </div>
+          <div className={classes.toolbar}>
+            <Link href="">
+              <a>
+                <FontAwesomeIcon icon={faEdit} />
+              </a>
+            </Link>
+          </div>
         </div>
       );
     } else if (session && session.user) {
       return (
         <div className={classes.spacer}>
-          <p className={classes.name}>{session.user.name}</p>
+          <div className={classes.toolbar}>
+            <Link href={`/${session.user.name}`}>
+              <a>{session.user.name}</a>
+            </Link>
+          </div>
         </div>
       );
     } else {

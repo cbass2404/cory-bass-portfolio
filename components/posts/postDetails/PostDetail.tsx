@@ -4,12 +4,14 @@ import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import atomDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
 import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
 import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
+import python from 'react-syntax-highlighter/dist/cjs/languages/prism/python';
 
 import PostHeader from './PostHeader';
 import classes from './PostDetail.module.scss';
 
 SyntaxHighlighter.registerLanguage('js', js);
 SyntaxHighlighter.registerLanguage('css', css);
+SyntaxHighlighter.registerLanguage('python', python);
 
 const PostDetail = (props: any) => {
   const { slug, image, content, title } = props.post;
@@ -45,9 +47,11 @@ const PostDetail = (props: any) => {
             : node.children[1];
 
         return (
-          <a href={aTag.properties.href} target="_blank" rel="noreferrer">
-            {aTag.children[0].value}
-          </a>
+          <div className={classes.link}>
+            <a href={aTag.properties.href} target="_blank" rel="noreferrer">
+              {aTag.children[0].value}
+            </a>
+          </div>
         );
       }
 

@@ -77,7 +77,7 @@ const CommentSection = (props: any) => {
           <Link href="/auth">Sign in to comment</Link>
         </div>
         <div className={classes.content}>
-          <CommentList />
+          <CommentList comments={comments} setComments={setComments} />
         </div>
       </div>
     );

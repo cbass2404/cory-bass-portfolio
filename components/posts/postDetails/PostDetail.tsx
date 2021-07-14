@@ -35,17 +35,42 @@ const PostDetail = (props: any) => {
         );
       }
 
+      if (
+        (node.children[1] && node.children[1].tagName === 'a') ||
+        node.children[0].tagName === 'a'
+      ) {
+        const aTag =
+          node.children[0].tagName === 'a'
+            ? node.children[0]
+            : node.children[1];
+
+        return (
+          <a href={aTag.properties.href} target="_blank" rel="noreferrer">
+            {aTag.children[0].value}
+          </a>
+        );
+      }
+
       return <p>{paragraph.children}</p>;
     },
     code(code: any) {
       const { className, children } = code;
       const language = className.split('-')[1];
       return (
-        <SyntaxHighlighter style={atomDark} language={language}>
+        <SyntaxHighlighter
+          style={{ ...atomDark }}
+          language={language}
+          wrapLongLines
+        >
           {children}
         </SyntaxHighlighter>
       );
     },
+    // a(a: any){
+    //   return (
+    //     <a
+    //   )
+    // }
   };
 
   return (

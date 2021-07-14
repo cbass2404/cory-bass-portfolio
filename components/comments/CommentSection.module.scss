@@ -1,6 +1,14 @@
 @import '../../styles/theme.scss';
 
 .wrapper {
+  .content {
+    margin-bottom: 20px;
+
+    a:hover {
+      color: $teal;
+    }
+  }
+
   .link {
     width: max-content;
     height: 100%;

@@ -9,19 +9,27 @@ const CommentList = (props: any) => {
     props.setComments(filteredComments);
   };
 
+  if (!!props.comments.length) {
+    return (
+      <div>
+        {props.comments.map((comment: any) => {
+          return (
+            <div key={comment._id}>
+              <CommentItem
+                comment={comment}
+                user={props.user}
+                handleDelete={handleDelete}
+              />
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
   return (
     <div>
-      {props.comments.map((comment: any) => {
-        return (
-          <div key={comment._id}>
-            <CommentItem
-              comment={comment}
-              user={props.user}
-              handleDelete={handleDelete}
-            />
-          </div>
-        );
-      })}
+      <p>No comments yet...</p>
     </div>
   );
 };

@@ -57,7 +57,7 @@ const MainHeader = (props: any) => {
             </Link>
           </div>
           <div className={classes.toolbar}>
-            <Link href="">
+            <Link href="/portfolio/new-item">
               <a>
                 <FontAwesomeIcon icon={faEdit} />
               </a>

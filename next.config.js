@@ -3,7 +3,8 @@ module.exports = {
     USERS: process.env.USERS,
     MESSAGES: process.env.MESSAGES,
     COMMENTS: process.env.COMMENTS,
-    NEXTAUTH_URL: 'https://localhost:3000/',
+    PORTFOLIO: process.env.PORTFOLIO,
+    NEXTAUTH_URL: 'http://localhost:3000/',
   },
   reactStrictMode: true,
 };

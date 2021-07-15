@@ -1,0 +1,21 @@
+@import '../../styles/theme.scss';
+
+.wrapper {
+  width: 75%;
+
+  button {
+    color: $white;
+    background-color: $teal;
+    margin-top: 15px;
+    width: fit-content;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+
+    &:active {
+      -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+    }
+  }
+}

@@ -1,0 +1,59 @@
+@import '../../styles/theme.scss';
+
+.wrapper {
+  text-align: center;
+  height: fit-content;
+  width: 700px;
+  padding: 20px;
+  background-color: $gray;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  position: fixed;
+  top: 10%;
+  right: calc(50% - 350px);
+
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .links {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+  }
+
+  .images {
+    display: flex;
+    gap: 15px;
+
+    img {
+      height: 200px;
+      width: 200px;
+    }
+  }
+
+  .buttons {
+    display: flex;
+
+    .back {
+      background-color: red;
+    }
+
+    button {
+      color: $white;
+      background-color: $teal;
+      margin-top: 15px;
+      width: 75px;
+      height: 30px;
+      border: none;
+      border-radius: 5px;
+
+      &:active {
+        -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}

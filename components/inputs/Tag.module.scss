@@ -1,0 +1,9 @@
+@import '../../styles/theme.scss';
+
+.wrapper {
+  background-color: $light-gray;
+  border: 2px solid $dark-gray;
+  border-radius: 5px;
+  padding: 3px 5px;
+  margin-right: 3px;
+}

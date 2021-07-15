@@ -35,12 +35,16 @@ const handler = async (req: any, res: any) => {
       res.status(500).json({ message: 'Could not save to database' });
     }
 
+    client?.close();
+
     portfolioItem._id = result?.insertedId.toString();
 
-    res.status(200).json({ message: 'Success!', data: portfolioItem });
+    res.status(200).json({ message: 'Success!' });
+    return;
   }
 
   client?.close();
+  res.status(400).json({ message: 'Method not allowed' });
   return;
 };
 

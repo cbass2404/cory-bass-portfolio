@@ -2,7 +2,6 @@ import { connectToPortfolioDatabase } from './db';
 
 export const getAllPortfolioItems = async () => {
   let client;
-
   try {
     client = await connectToPortfolioDatabase();
   } catch {
@@ -18,8 +17,11 @@ export const getAllPortfolioItems = async () => {
       .sort({ date: -1 })
       .toArray();
   } catch {
+    client.close();
     throw new Error('Could not query database');
   }
+
+  client.close();
 
   if (response) {
     const data: any[] = [];
@@ -36,5 +38,40 @@ export const getAllPortfolioItems = async () => {
     return data;
   }
 
+  client.close();
   throw new Error('No results found');
+};
+
+export const getAPortfolioItem = async (slug: string) => {
+  let client;
+  try {
+    client = await connectToPortfolioDatabase();
+  } catch {
+    throw new Error('Could not connect to database');
+  }
+
+  const collection = client.db().collection('portfolio');
+
+  let response;
+  try {
+    response = await collection.findOne({ slug });
+  } catch {
+    client.close();
+    throw new Error('Could not query database');
+  }
+
+  client.close();
+
+  if (response) {
+    const data = {
+      ...response,
+      _id: response._id.toString(),
+      date: response.date.toString(),
+    };
+
+    return data;
+  }
+
+  client.close();
+  throw new Error('No result found');
 };

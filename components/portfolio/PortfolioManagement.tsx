@@ -45,7 +45,6 @@ const PortfolioManagement = (props: any) => {
       return;
     }
 
-    console.log(data.data);
     setError(false);
     setResponse(data.message);
   };

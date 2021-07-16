@@ -1,0 +1,65 @@
+@import '../../styles/theme.scss';
+
+.wrapper {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+
+  .content {
+    position: relative;
+    margin-top: 15px;
+
+    .text {
+      width: 95%;
+      height: fit-content;
+      position: absolute;
+      top: 25%;
+      right: 2%;
+
+      .ellipsis {
+        width: 100%;
+        height: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .tags {
+      color: black;
+    }
+  }
+
+  .textWrapper {
+    color: transparent;
+    transition: 0.5s ease-in-out;
+    background-color: black;
+    background-position: center;
+    background-size: cover;
+
+    &:hover {
+      color: $white;
+
+      img {
+        filter: brightness(50%);
+        opacity: 0.2;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    .textWrapper {
+      color: $white;
+      background-color: black;
+      background-position: center;
+      background-size: cover;
+
+      img {
+        filter: brightness(50%);
+        opacity: 0.2;
+      }
+    }
+  }
+}

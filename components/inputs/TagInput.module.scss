@@ -1,0 +1,16 @@
+@import '../../styles/theme.scss';
+
+.select {
+  select {
+    margin-top: 15px;
+    height: 30px;
+    width: 200px;
+    color: $dark-gray;
+    background-color: $light-gray;
+    border: none;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+  }
+}

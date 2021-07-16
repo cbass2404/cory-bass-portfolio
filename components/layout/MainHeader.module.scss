@@ -28,19 +28,15 @@
     .toolbar {
       width: fit-content;
       margin-right: 10px;
+      transition: 0.1s ease-in-out;
 
-      a :hover {
+      &:hover {
         color: $teal;
       }
     }
 
     svg {
       margin-top: 5px;
-      transition: 0.1s ease-in-out;
-
-      &:hover {
-        color: $teal;
-      }
     }
   }
 

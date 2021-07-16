@@ -1,12 +1,11 @@
+import PortfolioDetail from '../../components/portfolio/portfolioDetails/PortfolioDetail';
 import HighlightedH1 from '../../lib/HighlightedH1';
 import { getAllPortfolioItems, getAPortfolioItem } from '../../lib/portfolio';
 
 const PortfolioDetailPage = (props: any) => {
-  console.log(props.portfolioItem);
-
   return (
     <div>
-      <HighlightedH1 content={props.portfolioItem.title.toLowerCase()} />
+      <PortfolioDetail portfolioItem={props.portfolioItem} />
     </div>
   );
 };
@@ -20,6 +19,7 @@ export const getStaticProps = async (context: any) => {
     props: {
       portfolioItem,
     },
+    revalidate: 24 * 60 * 60,
   };
 };
 

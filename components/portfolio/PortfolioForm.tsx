@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import FormInput from '../inputs/Input';
+import TagInput from '../inputs/TagInput';
+import Tag from '../inputs/Tag';
 import classes from './PortfolioForm.module.scss';
 
 interface PortfolioItem {
@@ -19,7 +21,7 @@ const PortfolioForm = (props: any) => {
   const [url, setUrl] = useState('');
   const [githubUrl, setGithubUrl] = useState('');
   const [description, setDescription] = useState('');
-  const [tags, setTags] = useState('');
+  const [tags, setTags] = useState<string[]>([]);
   const [image, setImage] = useState('');
   const [thumbnail, setThumbnail] = useState('');
   const [slug, setSlug] = useState('');
@@ -39,7 +41,6 @@ const PortfolioForm = (props: any) => {
       value: description,
       setValue: setDescription,
     },
-    { label: 'Tags:', type: 'text', value: tags, setValue: setTags },
   ];
 
   const setSlugAndImages = useCallback(() => {
@@ -61,32 +62,12 @@ const PortfolioForm = (props: any) => {
       setUrl(props.portfolioItem.url);
       setGithubUrl(props.portfolioItem.githubUrl);
       setDescription(props.portfolioItem.description);
-      setTags(props.portfolioItem.tags.join(', '));
+      setTags(props.portfolioItem.tags);
       setImage(props.portfolioItem.image);
       setThumbnail(props.portfolioItem.thumbnail);
       setSlug(props.portfolioItem.slug);
     }
   }, [props]);
-
-  const onSubmit = (event: any) => {
-    event.preventDefault();
-
-    const formatTags = tags;
-    let formattedTags = formatTags.trim().split(', ');
-
-    const portfolioItem: PortfolioItem = {
-      title,
-      url,
-      githubUrl,
-      description,
-      image,
-      thumbnail,
-      slug,
-      tags: formattedTags,
-    };
-
-    props.handleSubmit(portfolioItem);
-  };
 
   const setInput = () => {
     return inputs.map(({ label, type, value, setValue }) => (
@@ -101,10 +82,47 @@ const PortfolioForm = (props: any) => {
     ));
   };
 
+  const onSubmit = (event: any) => {
+    event.preventDefault();
+
+    const portfolioItem: PortfolioItem = {
+      title,
+      url,
+      githubUrl,
+      description,
+      image,
+      thumbnail,
+      slug,
+      tags,
+    };
+
+    props.handleReview(portfolioItem);
+  };
+
+  const removeTag = (targetTag: string) => {
+    const newTags = tags.filter((tag: string) => tag !== targetTag);
+    setTags(newTags);
+  };
+
   return (
     <div className={classes.wrapper}>
       <form onSubmit={onSubmit}>
         {setInput()}
+        <TagInput setTags={setTags} tags={tags} label={'Tags: '} />
+        <div className={classes.tagsSelect}>
+          {!!tags.length &&
+            tags.map((tag: string) => {
+              return (
+                <div
+                  key={tag}
+                  className={classes.tagItem}
+                  onClick={() => removeTag(tag)}
+                >
+                  <Tag tag={tag} />
+                </div>
+              );
+            })}
+        </div>
         <div>
           <button>Submit</button>
         </div>

@@ -45,7 +45,7 @@ const MainHeader = (props: any) => {
       return (
         <div className={classes.spacer}>
           <div className={classes.toolbar}>
-            <Link href="">
+            <Link href="/admin">
               <a>
                 <FontAwesomeIcon icon={faEnvelope} />
               </a>

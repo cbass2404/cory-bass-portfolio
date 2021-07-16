@@ -16,7 +16,7 @@ interface PortfolioItem {
 }
 
 const PortfolioManagement = (props: any) => {
-  const [portfolioItem, setPortfolioItem] = useState<PortfolioItem | null>(
+  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem | null>(
     null
   );
   const [toggleModal, setToggleModal] = useState(false);
@@ -24,14 +24,14 @@ const PortfolioManagement = (props: any) => {
   const [response, setResponse] = useState('');
 
   const handleReview = (portfolioItem: PortfolioItem) => {
-    setPortfolioItem(portfolioItem);
+    setPortfolioItems(portfolioItem);
     setToggleModal(!toggleModal);
   };
 
   const handleSubmit = async () => {
     const response = await fetch('/api/portfolio', {
       method: 'POST',
-      body: JSON.stringify(portfolioItem),
+      body: JSON.stringify(portfolioItems),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -52,14 +52,14 @@ const PortfolioManagement = (props: any) => {
   return (
     <div className={classes.wrapper}>
       <PortfolioForm
-        handleSubmit={handleReview}
-        portfolioItem={portfolioItem}
+        handleReview={handleReview}
+        portfolioItem={portfolioItems}
       />
       {toggleModal && (
         <PortfolioModal
           toggleModal={toggleModal}
           setToggleModal={setToggleModal}
-          portfolioItem={portfolioItem}
+          portfolioItem={portfolioItems}
           handleSubmit={handleSubmit}
         />
       )}

@@ -1,0 +1,50 @@
+@import '../../../styles/theme.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .content {
+    width: 100%;
+    margin-top: 30px;
+    position: relative;
+
+    .title {
+      position: absolute;
+      top: 45%;
+    }
+
+    p {
+      text-align: left;
+      width: 90%;
+      margin: 0 5%;
+    }
+
+    img {
+      height: 200px;
+      width: 100%;
+      margin: 0;
+      background-color: black;
+      background-position: center;
+      background-size: cover;
+      filter: brightness(50%);
+      opacity: 0.8;
+      object-fit: cover;
+    }
+
+    .links {
+      text-align: left;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
+
+      svg {
+        margin-right: 10px;
+      }
+
+      &:hover {
+        color: $teal;
+      }
+    }
+  }
+}

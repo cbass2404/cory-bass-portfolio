@@ -33,6 +33,23 @@
       &:hover {
         color: $teal;
       }
+
+      .unread {
+        position: relative;
+
+        p {
+          color: black;
+          background-color: $teal;
+          border: 1px solid $dark-gray;
+          font-size: 12px;
+          width: 15px;
+          height: 15px;
+          border-radius: 100%;
+          position: absolute;
+          top: -40%;
+          right: 55%;
+        }
+      }
     }
 
     svg {

@@ -19,6 +19,7 @@ const MainHeader = (props: any) => {
   const [session, loading] = useSession();
 
   const [activeLink, setActiveLink] = useState('');
+  const [unread, setUnread] = useState(0);
 
   const route = useCallback(() => {
     return router.pathname.split('/')[1];
@@ -30,25 +31,45 @@ const MainHeader = (props: any) => {
     setActiveLink(result);
   }, [route]);
 
+  const getUnreadMessages = async () => {
+    const response = await fetch('/api/messages/unread');
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.log(data.message);
+      return;
+    }
+
+    setUnread(data.data);
+  };
+
+  useEffect(() => {
+    getUnreadMessages();
+  }, []);
+
   const handleLogout = () => {
     signOut();
   };
 
   const showUser = useCallback(() => {
-    if (loading) {
-      return (
-        <div className={classes.spacer}>
-          <p>Loading...</p>
-        </div>
-      );
-    } else if (session && session.user && session.user.name === '@cbass') {
+    if (!loading && session?.user?.name === '@cbass') {
       return (
         <div className={classes.spacer}>
           <div className={classes.toolbar}>
             <Link href="/admin">
-              <a>
-                <FontAwesomeIcon icon={faEnvelope} />
-              </a>
+              {!!unread ? (
+                <a>
+                  <div className={classes.unread}>
+                    <FontAwesomeIcon icon={faEnvelope} />
+                    <p>{unread}</p>
+                  </div>
+                </a>
+              ) : (
+                <a>
+                  <FontAwesomeIcon icon={faEnvelopeOpen} />
+                </a>
+              )}
             </Link>
           </div>
           <div className={classes.toolbar}>
@@ -57,7 +78,7 @@ const MainHeader = (props: any) => {
             </Link>
           </div>
           <div className={classes.toolbar}>
-            <Link href="/portfolio/new-item">
+            <Link href="/portfolio/portfolio-items">
               <a>
                 <FontAwesomeIcon icon={faEdit} />
               </a>
@@ -82,7 +103,7 @@ const MainHeader = (props: any) => {
         </div>
       );
     }
-  }, [session, loading]);
+  }, [session, loading, unread]);
 
   return (
     <header className={classes.header}>

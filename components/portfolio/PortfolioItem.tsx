@@ -9,22 +9,41 @@ const PortfolioItem = (props: any) => {
 
   return (
     <div className={classes.wrapper}>
-      <div className={`${classes.content} ${classes.textWrapper}`}>
-        <Link href={`/portfolio/${slug}`}>
-          <a>
-            <Image
-              src={thumbnail}
-              alt={`${title} thumbnail`}
-              width={300}
-              height={300}
-            />
-            <div className={classes.text}>
-              <h2>{title}</h2>
-              <p className={classes.ellipsis}>{description}</p>
-            </div>
-          </a>
-        </Link>
-      </div>
+      {!props.edit ? (
+        <div className={`${classes.content} ${classes.textWrapper}`}>
+          <Link href={`/portfolio/${slug}`}>
+            <a>
+              <Image
+                src={thumbnail}
+                alt={`${title} thumbnail`}
+                width={300}
+                height={300}
+              />
+              <div className={classes.text}>
+                <h2>{title}</h2>
+                <p className={classes.ellipsis}>{description}</p>
+              </div>
+            </a>
+          </Link>
+        </div>
+      ) : (
+        <div
+          className={`${classes.content} ${
+            !props.edit ? classes.textWrapper : classes.editTextWrapper
+          }`}
+        >
+          <Image
+            src={thumbnail}
+            alt={`${title} thumbnail`}
+            width={300}
+            height={300}
+          />
+          <div className={classes.text}>
+            <h2>{title}</h2>
+            <p className={classes.ellipsis}>{description}</p>
+          </div>
+        </div>
+      )}
       <div className={classes.content}>
         {tags.map((tag: string) => {
           return <Tag key={tag} tag={tag} />;

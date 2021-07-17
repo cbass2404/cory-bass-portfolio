@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { ObjectId } from 'mongodb';
 
 import FormInput from '../inputs/Input';
 import TagInput from '../inputs/TagInput';
@@ -14,6 +15,8 @@ interface PortfolioItem {
   image: string;
   thumbnail: string;
   slug: string;
+  _id: ObjectId | string | null;
+  date: Date | null;
 }
 
 const PortfolioForm = (props: any) => {
@@ -25,6 +28,8 @@ const PortfolioForm = (props: any) => {
   const [image, setImage] = useState('');
   const [thumbnail, setThumbnail] = useState('');
   const [slug, setSlug] = useState('');
+  const [_id, set_id] = useState<ObjectId | string | null>(null);
+  const [date, setDate] = useState<Date | null>(null);
 
   const inputs = [
     { label: 'Title:', type: 'text', value: title, setValue: setTitle },
@@ -66,8 +71,10 @@ const PortfolioForm = (props: any) => {
       setImage(props.portfolioItem.image);
       setThumbnail(props.portfolioItem.thumbnail);
       setSlug(props.portfolioItem.slug);
+      set_id(props.portfolioItem._id);
+      setDate(props.portfolioItem.date);
     }
-  }, [props]);
+  }, [props.portfolioItem]);
 
   const setInput = () => {
     return inputs.map(({ label, type, value, setValue }) => (
@@ -94,9 +101,26 @@ const PortfolioForm = (props: any) => {
       thumbnail,
       slug,
       tags,
+      _id,
+      date,
     };
 
     props.handleReview(portfolioItem);
+  };
+
+  const clearForm = (event: any) => {
+    event.preventDefault();
+
+    setTitle('');
+    setUrl('');
+    setGithubUrl('');
+    setDescription('');
+    setTags([]);
+    setImage('');
+    setThumbnail('');
+    setSlug('');
+    set_id(null);
+    setDate(null);
   };
 
   const removeTag = (targetTag: string) => {
@@ -123,7 +147,8 @@ const PortfolioForm = (props: any) => {
               );
             })}
         </div>
-        <div>
+        <div className={classes.buttons}>
+          <button onClick={clearForm}>Clear</button>
           <button>Submit</button>
         </div>
       </form>

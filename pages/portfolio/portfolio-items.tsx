@@ -1,19 +1,19 @@
 import { getSession } from 'next-auth/client';
 
+import { getAllPortfolioItems } from '../../lib/portfolio';
 import PortfolioManagement from '../../components/portfolio/PortfolioManagement';
-import HighlightedH1 from '../../lib/HighlightedH1';
 
-const NewItemPage = (props: any) => {
+const PortfolioItemsPage = (props: any) => {
   return (
     <div>
-      <HighlightedH1 content="new item" />
-      <PortfolioManagement />
+      <PortfolioManagement portfolioItems={props.portfolioItems} />
     </div>
   );
 };
 
 export const getServerSideProps = async (context: any) => {
   const session = await getSession({ req: context.req });
+  const portfolioItems = await getAllPortfolioItems();
 
   if (session?.user?.name !== '@cbass') {
     return {
@@ -25,8 +25,10 @@ export const getServerSideProps = async (context: any) => {
   }
 
   return {
-    props: {},
+    props: {
+      portfolioItems,
+    },
   };
 };
 
-export default NewItemPage;
+export default PortfolioItemsPage;

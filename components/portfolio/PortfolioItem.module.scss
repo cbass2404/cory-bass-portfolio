@@ -46,6 +46,18 @@
       }
     }
   }
+
+  .editTextWrapper {
+    transition: 0.5s ease-in-out;
+    background-color: black;
+    background-position: center;
+    background-size: cover;
+
+    img {
+      filter: brightness(50%);
+      opacity: 0.2;
+    }
+  }
 }
 
 @media (max-width: 768px) {

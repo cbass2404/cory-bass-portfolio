@@ -13,8 +13,8 @@
     .tagsSelect {
       margin-top: 15px;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-      justify-items: center;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      // justify-items: center;
       gap: 15px 20px;
 
       .tagItem {

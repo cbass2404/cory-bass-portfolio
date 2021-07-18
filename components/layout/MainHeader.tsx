@@ -57,7 +57,7 @@ const MainHeader = (props: any) => {
       return (
         <div className={classes.spacer}>
           <div className={classes.toolbar}>
-            <Link href="/admin">
+            <Link href="/messages">
               {!!unread ? (
                 <a>
                   <div className={classes.unread}>

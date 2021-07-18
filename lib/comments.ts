@@ -1,4 +1,4 @@
-import { connectToCommentsDatabase } from './db';
+import connectToDatabase from './db';
 
 const formatData = async (data: any) =>
   await data.map((item: any) => ({
@@ -17,7 +17,7 @@ let data;
 
 export const getPostComments = async (slug: string) => {
   try {
-    client = await connectToCommentsDatabase();
+    client = await connectToDatabase('comments');
   } catch (error) {
     throw new Error('Could not connect to database');
   }
@@ -43,7 +43,7 @@ export const getPostComments = async (slug: string) => {
 
 export const getUnreadComments = async () => {
   try {
-    client = await connectToCommentsDatabase();
+    client = await connectToDatabase('comments');
   } catch {
     throw new Error('Could not connect to client');
   }

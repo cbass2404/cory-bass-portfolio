@@ -1,9 +1,9 @@
-import { connectToMessageDatabase } from './db';
+import connectToDatabase from './db';
 
 export const getUnreadMessages = async () => {
   let client;
   try {
-    client = await connectToMessageDatabase();
+    client = await connectToDatabase('messages');
   } catch {
     throw new Error('Could not connect to client');
   }

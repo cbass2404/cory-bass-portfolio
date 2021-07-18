@@ -1,9 +1,9 @@
-import { connectToPortfolioDatabase } from './db';
+import connectToDatabase from './db';
 
 export const getAllPortfolioItems = async () => {
   let client;
   try {
-    client = await connectToPortfolioDatabase();
+    client = await connectToDatabase('portfolio');
   } catch {
     throw new Error('Could not connect to database');
   }
@@ -45,7 +45,7 @@ export const getAllPortfolioItems = async () => {
 export const getAPortfolioItem = async (slug: string) => {
   let client;
   try {
-    client = await connectToPortfolioDatabase();
+    client = await connectToDatabase('portfolio');
   } catch {
     throw new Error('Could not connect to database');
   }

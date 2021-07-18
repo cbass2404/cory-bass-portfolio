@@ -1,13 +1,13 @@
 import { ObjectId } from 'mongodb';
 
-import { connectToPortfolioDatabase } from '../../../lib/db';
+import connectToDatabase from '../../../lib/db';
 
 const handler = async (req: any, res: any) => {
   const portfolioItem = req.body;
 
   let client;
   try {
-    client = await connectToPortfolioDatabase();
+    client = await connectToDatabase('portfolio');
   } catch (error) {
     res.status(500).json({ message: 'Could not connect to client' });
   }

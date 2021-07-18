@@ -1,4 +1,4 @@
-import { connectToMessageDatabase } from '../../lib/db';
+import connectToDatabase from '../../lib/db';
 
 interface Message {
   name: string;
@@ -20,7 +20,7 @@ const handler = async (req: any, res: any) => {
 
     let client;
     try {
-      client = await connectToMessageDatabase();
+      client = await connectToDatabase('messages');
     } catch (error) {
       res.status(500).json({ message: 'Could not connect to client' });
       return;

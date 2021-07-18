@@ -1,4 +1,4 @@
-import { connectToUserDatabase } from '../../../lib/db';
+import connectToDatabase from '../../../lib/db';
 import { hashPassword } from '../../../lib/auth';
 
 interface UserData {
@@ -39,7 +39,7 @@ const handler = async (req: any, res: any) => {
 
   let client;
   try {
-    client = await connectToUserDatabase();
+    client = await connectToDatabase('users');
   } catch (error) {
     res
       .status(500)

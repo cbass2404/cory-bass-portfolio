@@ -1,8 +1,5 @@
 import { ObjectId } from 'mongodb';
-import {
-  connectToMessageDatabase,
-  connectToCommentsDatabase,
-} from '../../../lib/db';
+import connectToDatabase from '../../../lib/db';
 
 const handler = async (req: any, res: any) => {
   const body = req.body;
@@ -12,7 +9,7 @@ const handler = async (req: any, res: any) => {
   if (req.method === 'PATCH') {
     if (body.type === 'message') {
       try {
-        client = await connectToMessageDatabase();
+        client = await connectToDatabase('messages');
       } catch {
         res.status(500).json({ message: 'Could not connect to client' });
         return;
@@ -23,7 +20,7 @@ const handler = async (req: any, res: any) => {
 
     if (body.type === 'comment') {
       try {
-        client = await connectToCommentsDatabase();
+        client = await connectToDatabase('comments');
       } catch {
         res.status(500).json({ message: 'Could not connect to client' });
         return;

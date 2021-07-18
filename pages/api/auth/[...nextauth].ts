@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 
-import { connectToUserDatabase } from '../../../lib/db';
+import connectToDatabase from '../../../lib/db';
 import { verifyPassword } from '../../../lib/auth';
 
 export default NextAuth({
@@ -13,7 +13,7 @@ export default NextAuth({
       async authorize(credentials: any) {
         let client;
         try {
-          client = await connectToUserDatabase();
+          client = await connectToDatabase('users');
         } catch (error) {
           throw new Error('Could not connect to database...');
         }

@@ -1,4 +1,4 @@
-import { connectToUserDatabase } from '../../../lib/db';
+import connectToDatabase from '../../../lib/db';
 
 const handler = async (req: any, res: any) => {
   if (req.method !== 'POST') {
@@ -9,7 +9,7 @@ const handler = async (req: any, res: any) => {
 
   let client;
   try {
-    client = await connectToUserDatabase();
+    client = await connectToDatabase('users');
   } catch (error) {
     res.status(500).json({ message: 'Could not connect to client' });
     return;

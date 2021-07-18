@@ -31,7 +31,8 @@ const TagInput = (props: any) => {
 
   const handleTags = useCallback(() => {
     if (value !== '') {
-      props.setTags([...props.tags, value]);
+      const newFilter = [...props.tags, value].sort();
+      props.setTags(newFilter);
       setValue('');
     }
   }, [props, value]);

@@ -1,27 +1,52 @@
-import { connectToMessageDatabase } from '../../../lib/db';
+import { ObjectId } from 'mongodb';
+import {
+  connectToMessageDatabase,
+  connectToCommentsDatabase,
+} from '../../../lib/db';
 
 const handler = async (req: any, res: any) => {
+  const body = req.body;
   let client;
-  try {
-    client = await connectToMessageDatabase();
-  } catch {
-    res.status(500).json({ message: 'Could not connect to client' });
-    return;
-  }
+  let collection;
 
   if (req.method === 'PATCH') {
+    if (body.type === 'message') {
+      try {
+        client = await connectToMessageDatabase();
+      } catch {
+        res.status(500).json({ message: 'Could not connect to client' });
+        return;
+      }
+
+      collection = client.db().collection('messages');
+    }
+
+    if (body.type === 'comment') {
+      try {
+        client = await connectToCommentsDatabase();
+      } catch {
+        res.status(500).json({ message: 'Could not connect to client' });
+        return;
+      }
+
+      collection = client.db().collection('comments');
+    }
+
+    const _id = new ObjectId(body._id);
+
+    try {
+      await collection?.findOneAndUpdate({ _id }, { $set: { viewed: true } });
+    } catch {
+      client?.close();
+      res.status(500).json({ message: 'Could not query database' });
+      return;
+    }
+
     client?.close();
-    res.status(200).json({ message: 'PATCH' });
+    res.status(200).json({ message: 'Success!' });
     return;
   }
 
-  if (req.method === 'GET') {
-    client?.close();
-    res.status(200).json({ message: 'GET' });
-    return;
-  }
-
-  client?.close();
   res.status(400).json({ message: 'Method not allowed' });
   return;
 };

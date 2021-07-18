@@ -1,0 +1,19 @@
+@import '../../../styles/theme.scss';
+
+.wrapper {
+  .item {
+    width: auto;
+    margin: 10px;
+    position: relative;
+
+    .icon {
+      height: 35px;
+      width: 35px;
+      color: $teal;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}

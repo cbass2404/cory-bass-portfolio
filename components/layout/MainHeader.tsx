@@ -37,7 +37,7 @@ const MainHeader = (props: any) => {
     const data = await response.json();
 
     if (!response.ok) {
-      console.log(data.message);
+      console.error(data.message);
       return;
     }
 

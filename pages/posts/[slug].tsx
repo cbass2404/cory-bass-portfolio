@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import Head from 'next/dist/next-server/lib/head';
 import { getSession } from 'next-auth/client';
 
 import CommentSection from '../../components/comments/CommentSection';
@@ -12,6 +13,10 @@ const BlogDetailPage = (props: any) => {
   if (post) {
     return (
       <Fragment>
+        <Head>
+          <title>{post.title}</title>
+          <meta name="description" content={post.content} />
+        </Head>
         <PostDetail post={post} />
         <CommentSection
           session={session}

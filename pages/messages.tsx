@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+import Head from 'next/dist/next-server/lib/head';
 import { getSession } from 'next-auth/client';
 
 import CommentSection from '../components/messages/comments/CommentSection';
@@ -8,12 +10,15 @@ import HighlightedH1 from '../lib/HighlightedH1';
 
 const MessagesPage = (props: any) => {
   return (
-    <div>
+    <Fragment>
+      <Head>
+        <title>Messages</title>
+      </Head>
       <HighlightedH1 content="messages" />
       <ContactSection messages={props.messages} />
       <HighlightedH1 content="comments" />
       <CommentSection comments={props.comments} />
-    </div>
+    </Fragment>
   );
 };
 

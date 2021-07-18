@@ -8,6 +8,9 @@ const AuthPage = () => {
   const [signup, setSignup] = useState<boolean>(false);
   return (
     <Fragment>
+      <Head>
+        <title>{signup ? 'Signup' : 'Login'}</title>
+      </Head>
       {signup ? (
         <HighlightedH1 content="signup" />
       ) : (

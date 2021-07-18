@@ -1,12 +1,18 @@
+import { Fragment } from 'react';
+import Head from 'next/dist/next-server/lib/head';
+
 import PortfolioDetail from '../../components/portfolio/portfolioDetails/PortfolioDetail';
-import HighlightedH1 from '../../lib/HighlightedH1';
 import { getAllPortfolioItems, getAPortfolioItem } from '../../lib/portfolio';
 
 const PortfolioDetailPage = (props: any) => {
   return (
-    <div>
+    <Fragment>
+      <Head>
+        <title>{props.portfolioItem.title}</title>
+        <meta name="description" content={props.portfolioItem.description} />
+      </Head>
       <PortfolioDetail portfolioItem={props.portfolioItem} />
-    </div>
+    </Fragment>
   );
 };
 

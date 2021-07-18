@@ -8,7 +8,6 @@ const HomePage = () => {
     <Fragment>
       <Head>
         <title>About Me</title>
-        <meta name="description" content="kajsdfkljdf" />
       </Head>
       <HighlightedH1 content="about me" />
       <AboutMe />

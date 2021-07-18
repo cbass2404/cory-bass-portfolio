@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react';
+import Head from 'next/dist/next-server/lib/head';
 
 import AuthForms from '../components/auth/AuthForms';
 import HighlightedH1 from '../lib/HighlightedH1';

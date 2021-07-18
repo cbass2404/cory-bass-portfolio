@@ -8,8 +8,6 @@ import classes from './Profile.module.scss';
 import { useRouter } from 'next/dist/client/router';
 
 const Profile = (props: any) => {
-  const router = useRouter();
-
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [response, setResponse] = useState('');

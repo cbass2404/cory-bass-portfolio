@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+import Head from 'next/dist/next-server/lib/head';
 import { getSession } from 'next-auth/client';
 import Profile from '../components/profile/Profile';
 
@@ -5,10 +7,13 @@ import HighlightedH1 from '../lib/HighlightedH1';
 
 const UserPage = (props: any) => {
   return (
-    <div>
+    <Fragment>
+      <Head>
+        <title>{props.user.name}</title>
+      </Head>
       <HighlightedH1 content={props.user.name} />
       <Profile user={props.user} />
-    </div>
+    </Fragment>
   );
 };
 

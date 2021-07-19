@@ -4,7 +4,7 @@ module.exports = {
     MESSAGES: process.env.MESSAGES,
     COMMENTS: process.env.COMMENTS,
     PORTFOLIO: process.env.PORTFOLIO,
-    NEXTAUTH_URL: 'http://localhost:3000/',
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
   },
   reactStrictMode: true,
 };

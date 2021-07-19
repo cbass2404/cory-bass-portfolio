@@ -21,6 +21,7 @@ const FormInput = (props: any) => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           rows={4}
+          minLength={30}
           maxLength={200}
         />
       </div>
@@ -42,6 +43,8 @@ const FormInput = (props: any) => {
           type={visible ? 'text' : 'password'}
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          maxLength={15}
+          minLength={8}
           required
         />
       </div>
@@ -56,6 +59,8 @@ const FormInput = (props: any) => {
         type={type}
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        minLength={5}
+        maxLength={15}
         required
       />
     </div>

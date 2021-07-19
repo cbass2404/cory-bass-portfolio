@@ -1,4 +1,5 @@
 import connectToDatabase from '../../lib/db';
+import { isValidInput, isValidEmail } from '../../lib/validateInput';
 
 interface Message {
   name: string;
@@ -10,6 +11,21 @@ interface Message {
 const handler = async (req: any, res: any) => {
   if (req.method === 'POST') {
     const messageData = req.body;
+
+    const validName = isValidInput(messageData.name);
+    let validEmail = isValidInput(messageData.email);
+    const validMessage = isValidInput(messageData.message);
+
+    if (!validName || !validEmail || !validMessage) {
+      res.status(422).json({ message: 'Inputs must have content' });
+      return;
+    }
+
+    validEmail = isValidEmail(messageData.email);
+    if (!validEmail) {
+      res.status(422).json({ message: 'Must be a valid email' });
+      return;
+    }
 
     const newMessage: Message = {
       name: messageData.name,

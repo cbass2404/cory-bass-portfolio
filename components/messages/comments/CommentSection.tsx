@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/dist/client/link';
 
 // fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faLink } from '@fortawesome/free-solid-svg-icons';
 
 import CommentItem from '../../comments/CommentItem';
 import classes from './CommentSection.module.scss';
@@ -44,11 +45,22 @@ const CommentSection = (props: any) => {
         return (
           <div key={comment._id} className={classes.item}>
             <CommentItem comment={comment} />
-            <div
-              onClick={() => handleClick(comment._id)}
-              className={classes.icon}
-            >
-              <FontAwesomeIcon icon={faCheck} />
+            <div className={classes.icons}>
+              <div
+                className={classes.icon}
+                onClick={() => handleClick(comment._id)}
+              >
+                <FontAwesomeIcon icon={faCheck} />
+              </div>
+              <div className={classes.icon}>
+                <a
+                  href={`/posts/${comment._post}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FontAwesomeIcon icon={faLink} />
+                </a>
+              </div>
             </div>
           </div>
         );

@@ -67,6 +67,9 @@ const AuthForm = (props: any) => {
           setValue={setValue}
         />
       ))}
+      <p className={classes.password}>
+        1 capital, 1 lower case, 1 number, 1 special, 8 to 15
+      </p>
       {props.error && <p>{props.error}</p>}
       <button>Submit Form</button>
     </form>

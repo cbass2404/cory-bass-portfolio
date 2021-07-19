@@ -102,6 +102,9 @@ const Profile = (props: any) => {
               />
             </div>
           ))}
+          <p className={classes.password}>
+            1 capital, 1 lower case, 1 number, 1 special, 8 to 15
+          </p>
 
           <button>Submit</button>
         </form>

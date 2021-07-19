@@ -1,5 +1,6 @@
 import connectToDatabase from '../../../lib/db';
 import { hashPassword, verifyPassword } from '../../../lib/auth';
+import { isValidInput, isValidPassword } from '../../../lib/validateInput';
 
 const handler = async (req: any, res: any) => {
   const user = req.body;
@@ -17,6 +18,20 @@ const handler = async (req: any, res: any) => {
   if (req.method === 'POST') {
     if (user.oldPassword === user.newPassword) {
       res.status(422).json({ message: 'This is your password already' });
+      client.close();
+      return;
+    }
+
+    let validPassword = isValidInput(user.newPassword);
+    if (!validPassword) {
+      res.status(422).json({ message: 'Invalid input for password' });
+      client.close();
+      return;
+    }
+
+    validPassword = isValidPassword(user.newPassword);
+    if (!validPassword) {
+      res.status(422).json({ message: 'Invalid password format' });
       client.close();
       return;
     }
@@ -79,9 +94,8 @@ const handler = async (req: any, res: any) => {
   }
 
   if (req.method === 'DELETE') {
-    let response;
     try {
-      response = await collection.findOneAndDelete({ email: user.email });
+      await collection.findOneAndDelete({ email: user.email });
     } catch (error) {
       res.status(500).json({ message: 'Could not query database' });
       client.close();

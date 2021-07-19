@@ -1,5 +1,10 @@
 import connectToDatabase from '../../../lib/db';
 import { hashPassword } from '../../../lib/auth';
+import {
+  isValidInput,
+  isValidEmail,
+  isValidPassword,
+} from '../../../lib/validateInput';
 
 interface UserData {
   username: string;
@@ -22,10 +27,36 @@ const handler = async (req: any, res: any) => {
     return;
   }
 
-  const { username, email, password } = req.body;
+  let { username, email, password } = req.body;
 
-  // TODO:
-  // implement input checks
+  email = email.split('').replace(/[@]/g, '').join('');
+
+  let validUsername = isValidInput(username);
+  let validEmail = isValidInput(email);
+  let validPassword = isValidInput(password);
+
+  if (!validUsername || !validEmail || !validPassword) {
+    res.status(422).json({ message: 'Unprocessable input(s)' });
+    return;
+  }
+
+  validEmail = isValidEmail(email);
+  validPassword = isValidPassword(password);
+
+  let error: string[] = [];
+
+  if (!validEmail) {
+    error.push('Invalid email format');
+  }
+
+  if (!validPassword) {
+    error.push('Invalid password format');
+  }
+
+  if (!!error.length) {
+    res.status(422).json({ message: error.join(', ') });
+    return;
+  }
 
   const hashedPassword = await hashPassword(password);
 

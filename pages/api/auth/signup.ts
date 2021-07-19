@@ -29,8 +29,6 @@ const handler = async (req: any, res: any) => {
 
   let { username, email, password } = req.body;
 
-  email = email.split('').replace(/[@]/g, '').join('');
-
   let validUsername = isValidInput(username);
   let validEmail = isValidInput(email);
   let validPassword = isValidInput(password);

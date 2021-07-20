@@ -24,10 +24,12 @@
         text-overflow: ellipsis;
       }
     }
+  }
 
-    .tags {
-      color: black;
-    }
+  .tags {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
   }
 
   .textWrapper {
@@ -36,6 +38,11 @@
     background-color: black;
     background-position: center;
     background-size: cover;
+
+    img {
+      height: 300px;
+      width: 300px;
+    }
 
     &:hover {
       color: $white;

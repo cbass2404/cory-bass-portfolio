@@ -24,6 +24,7 @@ export const getStaticProps = async () => {
     props: {
       portfolioItems: allPortfolioItems,
     },
+    revalidate: 600,
   };
 };
 

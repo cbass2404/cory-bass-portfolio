@@ -22,7 +22,7 @@ const FormInput = (props: any) => {
           onChange={(e) => setValue(e.target.value)}
           rows={4}
           minLength={30}
-          maxLength={200}
+          maxLength={1000}
         />
       </div>
     );
@@ -60,7 +60,6 @@ const FormInput = (props: any) => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         minLength={5}
-        maxLength={15}
         required
       />
     </div>

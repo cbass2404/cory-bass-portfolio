@@ -1,4 +1,3 @@
-import { useSession } from 'next-auth/client';
 import Image from 'next/dist/client/image';
 
 // fontawesome
@@ -11,23 +10,8 @@ import HighlightedH1 from '../../../lib/HighlightedH1';
 import Tag from '../../inputs/Tag';
 
 const PortfolioDetail = (props: any) => {
-  const [session, loading] = useSession();
-  const {
-    _id,
-    date,
-    description,
-    githubUrl,
-    url,
-    image,
-    slug,
-    tags,
-    thumbnail,
-    title,
-  } = props.portfolioItem;
-
-  // if (!loading && session?.user?.name === '@cbass') {
-  //   return <div>admin</div>;
-  // }
+  const { description, githubUrl, url, image, tags, title } =
+    props.portfolioItem;
 
   return (
     <div className={classes.wrapper}>
@@ -35,8 +19,8 @@ const PortfolioDetail = (props: any) => {
         <Image
           src={image}
           alt={`${title} banner image`}
-          width={300}
-          height={300}
+          width={400}
+          height={400}
         />
         <div className={classes.title}>
           <HighlightedH1 content={title} />

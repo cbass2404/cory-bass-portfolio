@@ -16,8 +16,8 @@ const PortfolioItem = (props: any) => {
               <Image
                 src={thumbnail}
                 alt={`${title} thumbnail`}
-                width={300}
-                height={300}
+                width={500}
+                height={500}
               />
               <div className={classes.text}>
                 <h2>{title}</h2>
@@ -44,7 +44,7 @@ const PortfolioItem = (props: any) => {
           </div>
         </div>
       )}
-      <div className={classes.content}>
+      <div className={classes.content + ' ' + classes.tags}>
         {tags.map((tag: string) => {
           return <Tag key={tag} tag={tag} />;
         })}

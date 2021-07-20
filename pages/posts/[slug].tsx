@@ -35,12 +35,13 @@ const BlogDetailPage = (props: any) => {
 };
 
 export const getServerSideProps = async (context: any) => {
-  const session = await getSession({ req: context.req });
   const { params } = context;
   const slug = params.slug;
 
-  const postDetails = await getPostDetails(slug);
-  const postComments = await getPostComments(slug);
+  const postDetails = getPostDetails(slug);
+  const postComments = getPostComments(slug);
+
+  const session = await getSession({ req: context.req });
 
   return {
     props: {

@@ -37,7 +37,7 @@ const AllPosts = (props: any) => {
         />
       </div>
       <div className={classes.content}>
-        {posts && <PostList posts={handleSearch()} searchParams={search} />}
+        <PostList posts={handleSearch()} searchParams={search} />
       </div>
     </div>
   );

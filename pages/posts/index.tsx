@@ -6,6 +6,19 @@ import HighlightedH1 from '../../lib/HighlightedH1';
 import { getAllPosts } from '../../lib/posts';
 
 const BlogPage = (props: any) => {
+  if (!props.posts) {
+    return (
+      <Fragment>
+        <Head>
+          <title>Talking about javascript</title>
+          <meta name="description" content="" />
+        </Head>
+        <HighlightedH1 content="blog" />
+        <p>No posts yet...</p>
+      </Fragment>
+    );
+  }
+
   return (
     <Fragment>
       <Head>
@@ -20,6 +33,14 @@ const BlogPage = (props: any) => {
 
 export const getStaticProps = () => {
   const allPosts = getAllPosts();
+
+  if (!allPosts) {
+    return {
+      props: {
+        posts: null,
+      },
+    };
+  }
 
   return {
     props: {

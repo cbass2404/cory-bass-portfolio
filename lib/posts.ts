@@ -28,6 +28,10 @@ const getPostData: (fileName: any) => any = (fileName) => {
 export const getAllPosts = () => {
   const postFiles = getPostsFiles();
 
+  if (!postFiles) {
+    return null;
+  }
+
   const allPosts = postFiles.map((postFile) => {
     return getPostData(postFile);
   });
@@ -44,7 +48,11 @@ export const getAllPosts = () => {
 export const getPostDetails = (slug: string) => {
   const allPosts = getAllPosts();
 
-  const PostDetail = allPosts.find((post) => post.slug === slug);
+  if (!allPosts) {
+    return null;
+  }
+
+  const PostDetail = allPosts?.find((post) => post.slug === slug);
 
   return PostDetail;
 };

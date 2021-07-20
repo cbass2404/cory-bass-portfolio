@@ -34,14 +34,6 @@ const BlogPage = (props: any) => {
 export const getStaticProps = () => {
   const allPosts = getAllPosts();
 
-  if (!allPosts) {
-    return {
-      props: {
-        posts: null,
-      },
-    };
-  }
-
   return {
     props: {
       posts: allPosts,
